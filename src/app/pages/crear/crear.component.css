@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-content {
+    width: 50%;
+    background: #fff;
+}
+
+.form-content h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-block: 1rem;
+}
+
+.form-content hr {
+    background: #000;
+}
+
+.form-content form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+}
+
+.form-content form > div {
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.form-content form > div.button{
+    flex-direction: row;
+    width: 100%;
+}
+
+.form-content form label {
+    font-weight: bold;
+}
+
+.form-content form input {
+    padding: .5rem;
+    outline: none;
+}
+
+.button {
+    padding-left: 38%;
+}
+
+.button button {
+    padding: 1rem;
+}
+
+.button button:last-child {
+    margin-left: 3rem;
+    background: #F2CB05;
+    color: #021859;
+    border: #F2CB05 1px solid;
+}

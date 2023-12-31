@@ -1,0 +1,26 @@
+<div class="title">
+    <input type="search" placeholder="Search...">
+    <button (click)="add()">Agregar</button>
+</div>
+<div class="table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <td>Logo</td>
+                <td>Nombre del Porducto</td>
+                <td>Descripción</td>
+                <td>Fecha de liberación</td>
+                <td>Fecha de reestructuración</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of productos">
+                <td><img [src]="producto.logo" width="100"></td>
+                <td>{{ producto.name }}</td>
+                <td>{{ producto.description }}</td>
+                <td>{{ producto.date_release | date:"MM/dd/yyyy" }}</td>
+                <td>{{ producto.date_revision | date:"MM/dd/yyyy" }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
