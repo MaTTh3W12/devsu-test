@@ -64,3 +64,12 @@
     color: #021859;
     border: #F2CB05 1px solid;
 }
+
+.error {
+    color: red;
+}
+
+.button button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

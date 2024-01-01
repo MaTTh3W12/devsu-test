@@ -59,3 +59,18 @@ tbody tr {
     border-top: 2px solid #f0f0f0;
     border-bottom: 2px solid #f0f0f0;
 }
+
+td button {
+    background: transparent;
+    border: none;
+}
+
+td button span {
+    cursor: pointer;
+    color: #021859;
+    font-size: 2rem;
+}
+
+td button span.delete {
+    color: red;
+}

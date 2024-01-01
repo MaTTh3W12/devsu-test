@@ -11,6 +11,7 @@
                 <td>Descripción</td>
                 <td>Fecha de liberación</td>
                 <td>Fecha de reestructuración</td>
+                <td>Acciones</td>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,14 @@
                 <td>{{ producto.description }}</td>
                 <td>{{ producto.date_release | date:"MM/dd/yyyy" }}</td>
                 <td>{{ producto.date_revision | date:"MM/dd/yyyy" }}</td>
+                <td>
+                    <button (click)="editar(producto.id)">
+                        <span class="las la-edit"></span>
+                    </button>
+                    <button>
+                        <span (click)="eliminar(producto.id)" class="las la-trash-alt delete"></span>
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>

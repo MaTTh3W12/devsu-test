@@ -2,34 +2,46 @@
     <div class="form-content" >
         <h1>Formulario de Registro</h1>
         <hr>
-        <form>
+        <form [formGroup]="myForm" (ngSubmit)="crearProducto()">
             <div>
                 <label for="id">Id</label>
-                <input type="text" name="id">
+                <input type="text" name="id" formControlName="id" required="">
+                <span class="error" *ngIf="myForm.get('id')?.hasError('required') && myForm.get('id')?.touched">El id es requerido</span>
+                <span class="error" *ngIf="myForm.get('id')?.hasError('minlength') && myForm.get('id')?.touched">El id debe tener almenos 3 caracteres</span>
+                <span class="error" *ngIf="myForm.get('id')?.hasError('maxlength') && myForm.get('id')?.touched">El id no debe debe exceder de 10 caracteres</span>
             </div>
             <div>
-                <label for="name">Name</label>
-                <input type="text" name="name">
+                <label for="name">Nombre</label>
+                <input type="text" name="name" formControlName="name">
+                <span class="error" *ngIf="myForm.get('name')?.hasError('required') && myForm.get('name')?.touched">El Nombre es requerido</span>
+                <span class="error" *ngIf="myForm.get('name')?.hasError('minlength') && myForm.get('name')?.touched">El Nombre debe tener almenos 5 caracteres</span>
+                <span class="error" *ngIf="myForm.get('name')?.hasError('maxlength') && myForm.get('name')?.touched">El Nombre no debe debe exceder de 100 caracteres</span>
             </div>
             <div>
                 <label for="description">Descripción</label>
-                <input type="text" name="description">
+                <input type="text" name="description" formControlName="description">
+                <span class="error" *ngIf="myForm.get('description')?.hasError('required') && myForm.get('description')?.touched">La descripción es requerida</span>
+                <span class="error" *ngIf="myForm.get('description')?.hasError('minlength') && myForm.get('description')?.touched">La descripción debe tener almenos 10 caracteres</span>
+                <span class="error" *ngIf="myForm.get('description')?.hasError('maxlength') && myForm.get('description')?.touched">La descripción no debe debe exceder de 200 caracteres</span>
             </div>
             <div>
                 <label for="logo">Logo</label>
-                <input type="text" name="logo">
+                <input type="text" name="logo" formControlName="logo">
+                <span class="error" *ngIf="myForm.get('logo')?.hasError('required') && myForm.get('logo')?.touched">El logo es requerido</span>
             </div>
             <div>
                 <label for="Fecha de ">Fecha de liberación</label>
-                <input type="date" name="description">
+                <input type="date" name="date_release" formControlName="date_release">
+                <span class="error" *ngIf="myForm.get('date_release')?.hasError('required') && myForm.get('date_release')?.touched">La fecha de liberación es requerida</span>
             </div>
             <div>
                 <label for="description">Fecha de reestructuración</label>
-                <input type="date" name="description">
+                <input type="date" name="date_revision" formControlName="date_revision">
+                <span class="error" *ngIf="myForm.get('date_revision')?.hasError('required') && myForm.get('date_revision')?.touched">La fecha de reestructuración requerida</span>
             </div>
             <div class="button">
                 <button>Reiniciar</button>
-                <button>Crear</button>
+                <button type="submit" [disabled]="myForm.invalid">Crear</button>
             </div>
         </form>
     </div>

@@ -25,4 +25,24 @@ export class ListadoComponent implements OnInit {
     this.router.navigate(['/crear']);
   }
 
+  editar(id: string) {
+    console.log(id);
+    this.router.navigate(['/editar', id]);
+  }
+
+  eliminar(id:string) {
+    if (confirm("¿Desea eliminar este registro?")) {
+      this.productoService.borrarProducto(id).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error) => {
+          if(error.status === 200){
+            window.location.reload();
+          }
+        }
+      });
+    }
+  }
+
 }
