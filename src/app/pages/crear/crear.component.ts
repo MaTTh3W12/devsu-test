@@ -61,10 +61,6 @@ export class CrearComponent implements OnInit {
 
   }
 
-  addDataToForm(prodcuto: Productos) {
-
-  }
-
   crearProducto() {
     console.log(this.myForm.value);
     this.product.agregarProductos(this.myForm.value).subscribe( res => {
