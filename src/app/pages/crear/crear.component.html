@@ -1,6 +1,6 @@
 <section class="container">
     <div class="form-content" >
-        <h1>Formulario de Registro</h1>
+        <h1>{{(producto?.id) ? 'Formulario de Actualizacion' :'Formulario de Registro'}}</h1>
         <hr>
         <form [formGroup]="myForm" (ngSubmit)="crearProducto()">
             <div>
@@ -41,7 +41,7 @@
             </div>
             <div class="button">
                 <button>Reiniciar</button>
-                <button type="submit" [disabled]="myForm.invalid">Crear</button>
+                <button type="submit" [disabled]="myForm.invalid">{{ (producto?.id) ? 'Actualizar' : 'Crear'}}</button>
             </div>
         </form>
     </div>

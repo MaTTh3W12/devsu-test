@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Productos } from 'src/app/interfaces/products.interface';
 import { ProductosService } from 'src/app/services/productos.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-crear',
@@ -36,7 +36,8 @@ export class CrearComponent implements OnInit {
   constructor(private fb: FormBuilder, 
               private product: ProductosService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     if (!this.router.url.includes('editar')) {
@@ -53,7 +54,9 @@ export class CrearComponent implements OnInit {
           return
         }
         this.producto = productoEdit;
-        this.myForm.patchValue(this.producto!);
+        const fecha1 = this.datePipe.transform(this.producto?.date_release, 'yyyy-MM-dd');
+        const fecha2 = this.datePipe.transform(this.producto?.date_revision, 'yyyy-MM-dd');
+        this.myForm.patchValue({...this.producto!, date_release: fecha1, date_revision: fecha2});
         // this.addDataToForm(this.producto);
         console.log(this.producto);
       });
@@ -63,10 +66,19 @@ export class CrearComponent implements OnInit {
 
   crearProducto() {
     console.log(this.myForm.value);
-    this.product.agregarProductos(this.myForm.value).subscribe( res => {
-      console.log('Datos insertados correctamente', res);
-      this.router.navigate(['/listado']);
-    })
+    if (this.producto?.id) {
+      //Acctualizar
+      this.product.editarProducto(this.myForm.value).subscribe(res => {
+        console.log('Datos actualizados correctamente', res);
+        this.router.navigate(['/listado']);
+      });
+    }
+    else {
+      this.product.agregarProductos(this.myForm.value).subscribe( res => {
+        console.log('Datos insertados correctamente', res);
+        this.router.navigate(['/listado']);
+      });
+    }
   }
 
 }
