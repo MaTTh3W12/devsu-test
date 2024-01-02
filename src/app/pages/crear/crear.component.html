@@ -5,7 +5,7 @@
         <form [formGroup]="myForm" (ngSubmit)="crearProducto()">
             <div>
                 <label for="id">Id</label>
-                <input type="text" name="id" formControlName="id" required="">
+                <input type="text" name="id" formControlName="id">
                 <span class="error" *ngIf="myForm.get('id')?.hasError('required') && myForm.get('id')?.touched">El id es requerido</span>
                 <span class="error" *ngIf="myForm.get('id')?.hasError('minlength') && myForm.get('id')?.touched">El id debe tener almenos 3 caracteres</span>
                 <span class="error" *ngIf="myForm.get('id')?.hasError('maxlength') && myForm.get('id')?.touched">El id no debe debe exceder de 10 caracteres</span>

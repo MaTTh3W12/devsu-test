@@ -14,7 +14,7 @@ export class CrearComponent implements OnInit {
 
   productos: Productos[] = [];
 
-  producto: Productos = {
+  producto: Productos | undefined = {
     id: '',
     name: '',
     description: '',
@@ -48,10 +48,21 @@ export class CrearComponent implements OnInit {
       let id = param['id'];
       this.product.getProductosPorId(id).subscribe( res => {
         this.productos = res;
-        const productoEdit = this.productos.find(producto => producto.id === id)
-        console.log(productoEdit);
-      })
-    })
+        const productoEdit = this.productos.find(producto => producto.id === id);
+        if (!productoEdit === undefined) {
+          return
+        }
+        this.producto = productoEdit;
+        this.myForm.patchValue(this.producto!);
+        // this.addDataToForm(this.producto);
+        console.log(this.producto);
+      });
+    });
+
+  }
+
+  addDataToForm(prodcuto: Productos) {
+
   }
 
   crearProducto() {
